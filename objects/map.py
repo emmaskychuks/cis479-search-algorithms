@@ -1,9 +1,12 @@
-from node import Node
+from objects.node import Node
 
 class Map:
-    def __init__(self, width, height):
+    def __init__(self, height, width):
         # Make a 8 x 11 matrix
-        self.matrix = [[Node(x, y) for x in range(height)] for y in range(width)]
+        self.height = height
+        self.width = width
+
+        self.matrix = [[Node(x, y) for y in range(width)] for x in range(height)]
 
         #Setting up obstacles in map
         # 0,0 is top left
@@ -46,11 +49,10 @@ class Map:
     def isWithinBoundary(self, node):
         # Check if a node is within the boundary of the map
         if (node.x >= 0 and node.x < 8) and (node.y >= 0 and node.y < 11):
-            return False
-        else:
             return True
+        else:
+            return False
 
     def print(self):
-        for x in self.matrix:
-            print([node.value for node in x])
-            
+        for row in self.matrix:
+            print([node.value for node in row])

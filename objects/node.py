@@ -6,4 +6,6 @@ class Node:
         self.value = "[]"
         self.cost = 0
 
+    def __lt__(self, other):
+        return self.cost < other.cost
     
