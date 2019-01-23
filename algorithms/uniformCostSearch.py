@@ -31,8 +31,9 @@ def uniformCostSearchHelper(frontier, grid, startNode, goalNode, orderNumber):
                 successorNode.value = str("%02d" % orderNumber)
                 successorNode.visited = True
                 successorNode.cost = 1
-                frontier.put(tuple([successorNode.cost, successorNode]))
+                frontier.put(tuple([successorNode.cost + currentNode.cost, successorNode]))
                 orderNumber += 1
+
         #check west
         if(grid.isWithinBoundary(Node(currentNode.x, currentNode.y - 1))and grid.matrix[goalNode.x][goalNode.y].visited != True):
             successorNode = grid.matrix[currentNode.x][currentNode.y - 1]
@@ -40,8 +41,9 @@ def uniformCostSearchHelper(frontier, grid, startNode, goalNode, orderNumber):
                 successorNode.value = str("%02d" % orderNumber)
                 successorNode.visited = True
                 successorNode.cost = 2
-                frontier.put(tuple([successorNode.cost, successorNode]))
+                frontier.put(tuple([successorNode.cost + currentNode.cost, successorNode]))
                 orderNumber += 1
+                
         #check east
         if(grid.isWithinBoundary(Node(currentNode.x, currentNode.y + 1)) and grid.matrix[goalNode.x][goalNode.y].visited != True):
             successorNode = grid.matrix[currentNode.x][currentNode.y + 1]
@@ -49,7 +51,7 @@ def uniformCostSearchHelper(frontier, grid, startNode, goalNode, orderNumber):
                 successorNode.value = str("%02d" % orderNumber)
                 successorNode.visited = True
                 successorNode.cost = 2
-                frontier.put(tuple([successorNode.cost, successorNode]))
+                frontier.put(tuple([successorNode.cost + currentNode.cost, successorNode]))
                 orderNumber += 1
 
         #check south
@@ -59,7 +61,7 @@ def uniformCostSearchHelper(frontier, grid, startNode, goalNode, orderNumber):
                 successorNode.value = str("%02d" % orderNumber)
                 successorNode.visited = True
                 successorNode.cost = 3
-                frontier.put(tuple([successorNode.cost, successorNode]))
+                frontier.put(tuple([successorNode.cost + currentNode.cost, successorNode]))
                 orderNumber += 1
 
     return uniformCostSearchHelper(frontier, grid, startNode, goalNode, orderNumber)
