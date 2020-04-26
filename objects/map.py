@@ -53,6 +53,17 @@ class Map:
         else:
             return False
 
+    def distance(self, node, goal):
+        #Calculate the distance between two nodes
+        distance = 2 * abs(node.y - goal.y)
+        if node.x - goal.x > 0:
+            distance += node.x - goal.x
+        elif node.x - goal.x < 0:
+            distance += 3 * (node.x -goal.x)
+        return distance
+
     def print(self):
         for row in self.matrix:
             print([node.value for node in row])
+
+    
